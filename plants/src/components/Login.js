@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
+import axios from "axios";
 import * as yup from "yup";
 import { yupLoginSchema as schema } from "../yup/yupLoginSchema";
 
@@ -7,7 +9,13 @@ export default function Login() {
     username: "",
     password: "",
   };
+  const initialErrors = {
+    apiError: "",
+    //feel free to add YUP errors here
+  };
+  const { push } = useHistory();
   const [loginValues, setLoginValues] = useState(initialLoginValues);
+  const [errors, setErrors] = useState(initialErrors);
 
   // VALIDATION //
   const validate = (credentials) => {
@@ -27,6 +35,17 @@ export default function Login() {
       password: loginValues.password,
     };
     validate(loginCredentials);
+    axios
+      .post("https://watergrows.herokuapp.com/api/users/login", loginValues)
+      .then((res) => {
+        console.log(res.data);
+        localStorage.setItem("token", res.data.token);
+        push("/plants");
+      })
+      .catch((err) => {
+        setErrors({ ...errors, apiError: err.response.data.message });
+        console.log(errors.apiError);
+      });
   };
 
   return (
@@ -34,6 +53,7 @@ export default function Login() {
       <h1>Login</h1>
       <form id="login-form" onSubmit={submit}>
         <label>
+          Username:{" "}
           <input
             type="text"
             name="username"
@@ -42,7 +62,9 @@ export default function Login() {
             placeholder="Enter username"
           />
         </label>
+        <br />
         <label>
+          Password:{" "}
           <input
             type="password"
             name="password"
@@ -51,8 +73,10 @@ export default function Login() {
             placeholder="Enter password"
           />
         </label>
+        <br />
         <button onClick={validate}>Login</button>
       </form>
+      <p>{errors.apiError}</p>
     </>
   );
 }

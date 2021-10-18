@@ -4,6 +4,7 @@ import "./css/App.css";
 //*Custom Components
 import HomePage from "./components/HomePage";
 import Login from "./components/Login";
+import PlantsList from "./components/PlantsList";
 
 function App() {
   return (
@@ -18,6 +19,9 @@ function App() {
       <Switch>
         <Route path="/sign-in">
           <Login />
+        </Route>
+        <Route path="/plants">
+          <PlantsList />
         </Route>
         <Route path="/">
           <HomePage />
