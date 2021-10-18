@@ -33,9 +33,10 @@ export default function Login() {
 
     return (
         <>
+        <div id="login-page">
             <h1>Login</h1>
             <form id="login-form" onSubmit={submit}>
-                <label>
+                <label className="user-login">
                     <input
                         type="text"
                         name="username"
@@ -44,7 +45,7 @@ export default function Login() {
                         placeholder="Enter username"
                     />
                 </label>
-                <label>
+                <label className="password-login">
                     <input
                         type="password"
                         name="password"
@@ -55,6 +56,7 @@ export default function Login() {
                 </label>
                 <button onClick={validate}>Login</button>
             </form>
+        </div>
         </>
     )
 }
