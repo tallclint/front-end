@@ -39,7 +39,7 @@ export default function Login() {
                     <input
                         type="text"
                         name="username"
-                        value={loginValues.value}
+                        value={loginValues.username}
                         onChange={change}
                         placeholder="Enter username"
                     />
@@ -49,6 +49,7 @@ export default function Login() {
                         type="password"
                         name="password"
                         onChange={change}
+                        value={loginValues.password}
                         placeholder="Enter password"
                     />
                 </label>
