@@ -75,4 +75,4 @@ const StyledEntryBoxes = styled.div`
             </StyledForm>
         </StyledCard>
     </Route>
-</StyledDiv>
+</StyledDiv>;
