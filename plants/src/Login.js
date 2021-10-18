@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import * as yup from 'yup'
+import { yupLoginSchema as schema } from './yupLoginSchema'
 
 
 export default function Login() {
@@ -10,17 +11,17 @@ export default function Login() {
     }
     const [loginValues, setLoginValues] = useState(initialLoginValues)
     
-    // YUP validation on submit //
-    const validate = e => {
-        
+    // VALIDATION //
+    const validate = (credentials) => {
+        // Validate / authenticate credentials onSubmit
     }
-    
+    // ON CHANGE //
     const change = e => {
         const { name, value } = e.target
         // Update state with the changes
         setLoginValues({ ...loginValues, [name]: value})
     } 
-
+    // ON SUBMIT //
     const submit = e => {
         e.preventDefault()
         const loginCredentials = {
