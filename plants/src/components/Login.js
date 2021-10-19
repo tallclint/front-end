@@ -38,13 +38,11 @@ export default function Login() {
     axios
       .post("https://watergrows.herokuapp.com/api/users/login", loginValues)
       .then((res) => {
-        console.log(res.data);
         localStorage.setItem("token", res.data.token);
         push("/plants");
       })
       .catch((err) => {
         setErrors({ ...errors, apiError: err.response.data.message });
-        console.log(errors.apiError);
       });
   };
 
