@@ -14,8 +14,9 @@ export const fetchFail = (error) => {
   return { type: FETCH_FAIL, payload: error };
 };
 
-export const plantsStart = (plantData) => {
+export const plantsStart = () => {
   return (dispatch) => {
+    dispatch(fetchStart());
     axiosWithAuth()
       .get("https://watergrows.herokuapp.com/api/plants")
       .then((res) => {
@@ -28,7 +29,7 @@ export const plantsStart = (plantData) => {
 };
 export const addPlant = (newPlant) => {
   return (dispatch) => {
-    dispatch(fetchStart);
+    dispatch(fetchStart());
     axiosWithAuth()
       .post("https://watergrows.herokuapp.com/api/plants", newPlant)
       .then((res) => {
@@ -41,7 +42,7 @@ export const addPlant = (newPlant) => {
 };
 export const deletePlant = (id) => {
   return (dispatch) => {
-    dispatch(fetchStart);
+    dispatch(fetchStart());
     axiosWithAuth()
       .delete(`https://watergrows.herokuapp.com/api/plants/${id}`)
       .then((res) => {
@@ -54,7 +55,7 @@ export const deletePlant = (id) => {
 };
 export const updatePlant = (plant) => {
   return (dispatch) => {
-    dispatch(fetchStart);
+    dispatch(fetchStart());
     axiosWithAuth()
       .put(`https://watergrows.herokuapp.com/api/plants/${plant.id}`, plant)
       .then((res) => {

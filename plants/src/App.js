@@ -1,12 +1,19 @@
 import { Link, Route, Switch } from "react-router-dom";
 import "./css/App.css";
+import { useEffect } from "react";
+import { connect } from "react-redux";
+import { plantsStart } from "./actions";
 
 //*Custom Components
 import HomePage from "./components/HomePage";
 import Login from "./components/Login";
 import PlantsList from "./components/PlantsList";
 
-function App() {
+function App(props) {
+  useEffect(() => {
+    props.plantsStart();
+  }, []);
+
   return (
     <div className="App">
       <header>
@@ -31,4 +38,4 @@ function App() {
   );
 }
 
-export default App;
+export default connect(null, { plantsStart })(App);

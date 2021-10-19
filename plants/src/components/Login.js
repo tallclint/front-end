@@ -42,6 +42,7 @@ export default function Login() {
         push("/plants");
       })
       .catch((err) => {
+        console.log(err.response);
         setErrors({ ...errors, apiError: err.response.data.message });
       });
   };
@@ -74,7 +75,7 @@ export default function Login() {
         <br />
         <button onClick={validate}>Login</button>
       </form>
-      <p>{errors.apiError}</p>
+      <p style={{ color: "red" }}>{errors.apiError}</p>
     </>
   );
 }
