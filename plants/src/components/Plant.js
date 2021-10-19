@@ -17,6 +17,6 @@ const Plant = (props) => {
 export default Plant;
 
 const StyledPlant = styled.div`
-  background-color: beige;
+  background-color: #fbe7c6;
   width: 30rem;
 `;

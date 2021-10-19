@@ -3,6 +3,7 @@ import "./css/App.css";
 import { useEffect } from "react";
 import { connect } from "react-redux";
 import { plantsStart } from "./actions";
+import styled from "styled-components";
 
 //*Custom Components
 import HomePage from "./components/HomePage";
@@ -19,8 +20,18 @@ function App(props) {
       <header>
         <nav>
           <h1>Water My Plants</h1>
-          <Link to="/">Home</Link>
-          <Link to="/sign-in">Sign In</Link>
+          <StyledNav>
+            <StyledLink>
+              <Link to="/" style={{ textDecoration: "none" }}>
+                Home
+              </Link>
+            </StyledLink>
+            <StyledLink>
+              <Link to="/sign-in" style={{ textDecoration: "none" }}>
+                Sign In
+              </Link>
+            </StyledLink>
+          </StyledNav>
         </nav>
       </header>
       <Switch>
@@ -39,3 +50,19 @@ function App(props) {
 }
 
 export default connect(null, { plantsStart })(App);
+
+const StyledNav = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+const StyledLink = styled(Link)`
+  padding: 0.8rem;
+  margin: 0.5rem;
+  text-decoration: none;
+  background-color: #a0e7e5;
+  transition: 0.2s;
+  &:hover {
+    background: #b4f8c8;
+  }
+`;
