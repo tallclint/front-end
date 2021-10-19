@@ -1,11 +1,35 @@
 import React from "react";
+import { plantsStart } from "../actions";
+import { connect } from "react-redux";
+import styled from "styled-components";
 
-const PlantsList = () => {
+import Plant from "./Plant";
+
+const PlantsList = (props) => {
   return (
     <div className="PlantsList">
-      <h2>Plants List</h2>
+      <StyledPlantsList>
+        <div>
+          <h2>Plants List</h2>
+          {!props.isFetching &&
+            props.plantsArr[0].map((plant) => {
+              return <Plant key={plant.id} plant={plant} />;
+            })}
+        </div>
+      </StyledPlantsList>
     </div>
   );
 };
+const mapStateToProps = (state) => {
+  return {
+    plantsArr: state.plantsArr,
+    isFetching: state.isFetching,
+  };
+};
 
-export default PlantsList;
+export default connect(mapStateToProps, { plantsStart })(PlantsList);
+
+const StyledPlantsList = styled.div`
+  display: flex;
+  justify-content: center;
+`;
