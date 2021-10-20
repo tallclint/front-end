@@ -9,50 +9,41 @@ export default function AddPlant (props){
     const onSubmit = (e) => {
         e.preventDefault()
 
-        if(!plantName) {
-            alert('Please add a Plant')
-            return
-        }
-        onAdd({plantName,nickName,waterNeeds,time})
-
-        setPlantName('')
-        setNickName('')
-        setWaterNeeds('')
-        setTime('')
-    }
+        const change = (e) => {
+            const { name, value } = e.target;
 
     return (
         <form onSubmit={onSubmit}>
-            <div>
-                <label>Plant Name</label>
+           
+                <label>Plant Name
                 {//could try and bring in the plant name dynamically here from an API, maybe based on user input or add the correct name to the plant list once user submits their plant
                     }   
                 <input type='text'
                  placeholder='plant name here'
                  value={plantName}
                  onChange={(e)=>setPlantName(e.target.value)}/>
-            </div>
-            <div>
-                <label>Nickname for your Plant</label>
+            </label>
+            
+                <label>Nickname for your Plant
                 <input type='text'
                  placeholder='nickname for your plant'
                  value={nickName}
                  onChange={(e)=>setNickName(e.target.value)}/>
-            </div>
-            <div>
-                <label>Amount of Water Plant Needs</label>
+            </label>
+            
+                <label>Amount of Water Plant Needs
                 <input type='text'
                  placeholder='plant name here'
                  value={waterNeeds}
                  onChange={(e)=>setWaterNeeds(e.target.value)}/>
-            </div>
-            <div>
-                <label></label>
+            </label>
+            
+                <label>When to Water
                 <input type='text'
                  placeholder='plant name here'
                  value={time}
                  onChange={(e)=>setTime(e.target.value)}/>
-            </div>
+                </label>
             <input type='submit' value='Save Plant' />
         </form>
 
