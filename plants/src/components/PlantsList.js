@@ -6,6 +6,7 @@ import styled from "styled-components";
 import Plant from "./Plant";
 
 const PlantsList = (props) => {
+  const handleClick = () => {};
   return (
     <div className="PlantsList">
       <StyledPlantsList>
@@ -17,6 +18,7 @@ const PlantsList = (props) => {
             })}
         </div>
       </StyledPlantsList>
+      <button onClick={handleClick}>Add Plant</button>
     </div>
   );
 };

@@ -19,4 +19,6 @@ export default Plant;
 const StyledPlant = styled.div`
   background-color: #fbe7c6;
   width: 30rem;
+  padding: 0.5rem;
+  margin: 0.5rem;
 `;
