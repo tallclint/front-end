@@ -49,4 +49,8 @@ export default function AddPlant (props){
 
 
     )
+<<<<<<< Updated upstream
 } 
+=======
+}}
+>>>>>>> Stashed changes
