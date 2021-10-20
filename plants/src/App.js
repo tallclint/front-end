@@ -1,25 +1,68 @@
-import logo from './logo.svg';
-import './App.css';
+import { Link, Route, Switch } from "react-router-dom";
+import "./css/App.css";
+import { useEffect } from "react";
+import { connect } from "react-redux";
+import { plantsStart } from "./actions";
+import styled from "styled-components";
 
-function App() {
+//*Custom Components
+import HomePage from "./components/HomePage";
+import Login from "./components/Login";
+import PlantsList from "./components/PlantsList";
+
+function App(props) {
+  useEffect(() => {
+    props.plantsStart();
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <header>
+        <nav>
+          <h1>Water My Plants</h1>
+          <StyledNav>
+            <StyledLink>
+              <Link to="/" style={{ textDecoration: "none" }}>
+                Home
+              </Link>
+            </StyledLink>
+            <StyledLink>
+              <Link to="/sign-in" style={{ textDecoration: "none" }}>
+                Sign In
+              </Link>
+            </StyledLink>
+          </StyledNav>
+        </nav>
       </header>
+      <Switch>
+        <Route path="/sign-in">
+          <Login />
+        </Route>
+        <Route path="/plants">
+          <PlantsList />
+        </Route>
+        <Route path="/">
+          <HomePage />
+        </Route>
+      </Switch>
     </div>
   );
 }
 
-export default App;
+export default connect(null, { plantsStart })(App);
+
+const StyledNav = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+const StyledLink = styled(Link)`
+  padding: 0.8rem;
+  margin: 0.5rem;
+  text-decoration: none;
+  background-color: #a0e7e5;
+  transition: 0.2s;
+  &:hover {
+    background: #b4f8c8;
+  }
+`;
